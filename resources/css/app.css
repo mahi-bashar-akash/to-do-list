@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--popin-font) !important;
+}
+
+:root {
+    --border-color: #e5e7eb;
+    --box-padding: 10px;
+    --edit-background: #079455;
+    --delete-background: #D92D20;
+    --popin-font: "Poppins", sans-serif;
+    --add-background: #067647;
+    --white: #ffffff;
+    --cancel-background: #475569;
+}
+
+.content-section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .content-section-inner {
+        width: 500px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        overflow: hidden;
+
+        @media screen and (max-width: 567px) {
+            width: 95%;
+        }
+
+        .content-header {
+            width: 100%;
+            padding: var(--box-padding);
+            border-bottom: 1px solid var(--border-color);
+
+            .content-header-title {
+                padding-bottom: 10px;
+                padding-left: 10px;
+                font-size: 20px;
+            }
+
+            .search-icon-position {
+                position: relative;
+                width: 100%;
+                margin-bottom: 10px;
+
+                .search-input {
+                    padding-left: 35px;
+                }
+
+                .search-icon {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 10px;
+                }
+            }
+
+            .form-control {
+                width: 100%;
+                height: 100%;
+                border: 1px solid var(--border-color);
+                outline: none;
+                padding: 10px 20px;
+                border-radius: 10px;
+            }
+
+        }
+
+        .content-body {
+            padding: var(--box-padding);
+            height: 350px;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                background-color: transparent;
+                width: 5px !important;
+                height: 5px !important;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: var(--border-color);
+                height: 5px !important;
+            }
+
+            .single-data {
+                padding: 10px 20px;
+                border: 1px solid var(--border-color);
+                margin-bottom: 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 10px;
+
+                .action {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+
+                    .btn {
+                        width: 35px;
+                        height: 35px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        outline: none;
+                        border: none;
+                        background-color: transparent;
+                        cursor: pointer;
+                        filter: invert(0);
+                        transition: 0.3s all ease;
+                        border-radius: 10px;
+
+                        &:last-child {
+                            margin-left: 10px;
+                        }
+
+                        &.btn-pencil {
+
+                            &:hover {
+                                filter: invert(1);
+                                transition: 0.3s all ease;
+                                background-color: var(--edit-background);
+                            }
+
+                        }
+
+                        &.btn-trash {
+
+                            &:hover {
+                                filter: invert(1);
+                                transition: 0.3s all ease;
+                                background-color: var(--delete-background);
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .content-footer {
+            position: relative;
+
+            .flex-end {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                padding: 10px;
+
+                .btn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    outline: none;
+                    border: none;
+                    background-color: transparent;
+                    cursor: pointer;
+                    filter: invert(1);
+                    transition: 0.3s all ease;
+                    border-radius: 10px;
+                    padding: 10px 20px;
+
+                    & span {
+                        padding-left: 10px;
+                    }
+
+                    &.btn-add {
+                        transition: 0.3s all ease-in-out;
+                        background-color: var(--edit-background);
+
+                        &:hover {
+                            background-color: var(--add-background);
+                            transition: 0.3s all ease-in-out;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .manage-popup-box {
+                width: auto;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -300px;
+                padding: 10px;
+                transition: 0.3s all ease-in-out;
+
+                &.active {
+                    transition: 0.3s all ease-in-out;
+                    bottom: 10px;
+                }
+
+                .popup-content {
+                    height: 210px;
+                    box-shadow: 0 0 8px 0 var(--border-color);
+                    background-color: var(--white);
+                    border-radius: 10px;
+                    padding: 10px;
+
+                    .popup-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .popup-title {
+                            padding: var(--box-padding);
+                        }
+
+                        .popup-close {
+                            width: 40px;
+                            height: 40px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: transparent;
+                            transition: 0.3s all ease-in-out;
+                            outline: none;
+                            border: none;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            &:hover {
+                                transition: 0.3s all ease-in-out;
+                                background-color: var(--border-color);
+                            }
+                        }
+
+                    }
+
+                    .form-group {
+                        padding: var(--box-padding);
+                        .form-label {
+                            display: block;
+                            margin-bottom: 5px;
+                        }
+                        .form-control {
+                            width: 100%;
+                            height: auto;
+                            padding: var(--box-padding);
+                            outline: none;
+                            border: 1px solid var(--border-color);
+                            border-radius: 10px;
+                        }
+
+                        .btn-manage {
+                            padding: 10px 20px;
+                            background-color: var(--edit-background);
+                            outline: none;
+                            border: none;
+                            cursor: pointer;
+                            color: var(--white);
+                            border-radius: 10px;
+
+                            &:hover {
+                                background-color: var(--add-background);
+                                transition: 0.3s all ease-in-out;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .delete-popup-box {
+                width: auto;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -300px;
+                padding: 10px;
+                transition: 0.3s all ease-in-out;
+
+                &.active {
+                    transition: 0.3s all ease-in-out;
+                    bottom: 10px;
+                }
+
+                .popup-content {
+                    height: 210px;
+                    box-shadow: 0 0 8px 0 var(--border-color);
+                    background-color: var(--white);
+                    border-radius: 10px;
+                    padding: 10px;
+
+                    .popup-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .popup-title {
+                            padding: var(--box-padding);
+                        }
+
+                        .popup-close {
+                            width: 40px;
+                            height: 40px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: transparent;
+                            transition: 0.3s all ease-in-out;
+                            outline: none;
+                            border: none;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            &:hover {
+                                transition: 0.3s all ease-in-out;
+                                background-color: var(--border-color);
+                            }
+                        }
+
+                    }
+
+                    .form-group {
+                        padding: var(--box-padding);
+                        .form-label {
+                            display: block;
+                            margin-bottom: 5px;
+                        }
+                        .form-control {
+                            width: 100%;
+                            height: auto;
+                            padding: var(--box-padding);
+                            outline: none;
+                            border: 1px solid var(--border-color);
+                            border-radius: 10px;
+                        }
+
+                        .btn-manage {
+                            padding: 10px 20px;
+                            background-color: var(--edit-background);
+                            outline: none;
+                            border: none;
+                            cursor: pointer;
+                            color: var(--white);
+                            border-radius: 10px;
+
+                            &:hover {
+                                background-color: var(--add-background);
+                                transition: 0.3s all ease-in-out;
+                            }
+
+                        }
+
+                    }
+
+                    .form-delete {
+                        padding: 10px 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        width: 100%;
+
+                        .delete-icon {
+                            width: 35px;
+                            height: 35px;
+                            margin-bottom: 5px;
+                        }
+
+                    }
+
+                    .popup-footer {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: var(--box-padding);
+
+                        .btn {
+                            width: 50%;
+                            padding: 10px 20px;
+                            border-radius: 10px;
+                            outline: none;
+                            border: none;
+                            cursor: pointer;
+
+                            &.btn-cancel {
+                                margin-right: 10px;
+                                color: var(--white);
+                                background-color: var(--cancel-background);
+                            }
+                            &.btn-confirm {
+                                margin-left: 10px;
+                                color: var(--white);
+                                background-color: var(--delete-background);
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
